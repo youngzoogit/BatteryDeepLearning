@@ -1,0 +1,14 @@
+SAMPLE_DIR = "sample_images"
+
+sample_files = sorted([
+    os.path.join(SAMPLE_DIR, f)
+    for f in os.listdir(SAMPLE_DIR)
+    if f.lower().endswith((".png", ".jpg", ".jpeg"))
+])
+
+if "sample_index" not in st.session_state:
+    st.session_state.sample_index = 0
+
+if st.button("다음 제품 검사"):
+    current_path = sample_files[st.session_state.sample_index]
+    st.session_state.sample_index = (st.session_state.sample_index + 1) % len(sample_files)
